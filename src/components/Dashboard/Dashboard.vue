@@ -4,16 +4,18 @@
       <template v-slot:default>
         <thead>
           <tr>
-            <th class="text-left">Comuna</th>
+            <th class="text-left">Region</th>
             <th class="text-left">Confirmados</th>
-            <th class="text-left">Población</th>
+            <th class="text-left">Recuperados</th>
+            <th class="text-left">Muertes</th>
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in comunas.data" :key="item.commune">
-            <td>{{ item.commune }}</td>
-            <td>{{ item.communeData }}</td>
-            <td>{{ item.communeInfo.population }}</td>
+          <tr v-for="(item, name) in  comunas.data" v-bind:key="item.id">
+            <td>{{ name }}</td>
+            <td>{{ item.confirmed  }}</td>
+            <td>{{ item.recovered }}</td>
+            <td>{{ item.deaths }}</td>
           </tr>
         </tbody>
       </template>
@@ -37,7 +39,7 @@ export default {
     return new Promise((resolve, reject) => {
       axios
         .get(
-          "https://chile-coronapi.herokuapp.com/api/v4/latest/communes?region_code=13"
+          "https://covid-api.mmediagroup.fr/v1/cases?country=Chile"
         )
         .then((response) => {
           this.comunas = response

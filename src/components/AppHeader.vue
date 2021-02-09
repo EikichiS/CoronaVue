@@ -1,6 +1,8 @@
 <template>
 <div>
-  <v-app-bar color="green" dense></v-app-bar>
+  <v-app-bar color="green" dense >
+    <v-toolbar-title>Corona App</v-toolbar-title>
+  </v-app-bar>
   </div>
 </template>
 
