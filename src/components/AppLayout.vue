@@ -1,18 +1,21 @@
 <template>
   <v-app>
     <app-header />
-    <dashboard />
+    <div>
+      <v-tabs>
+        <v-tab><router-link to="/Dashboard">Chile</router-link></v-tab>
+        <v-tab><router-link to="/Mundo">Mundo</router-link></v-tab>
+      </v-tabs>
+    </div>
+    <router-view />
   </v-app>
 </template>
 
 <script>
 import AppHeader from "./AppHeader.vue";
-import Dashboard from "./Dashboard/Dashboard.vue";
 export default {
-
-  components: { 
-      AppHeader,
-      Dashboard,
+  components: {
+      AppHeader
   },
 };
 </script>

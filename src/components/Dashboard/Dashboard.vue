@@ -43,7 +43,6 @@ export default {
         )
         .then((response) => {
           this.comunas = response
-          console.log(this.comunas);
         })
         .catch((err) => reject(err));
     });
