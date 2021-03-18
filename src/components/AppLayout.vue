@@ -3,6 +3,7 @@
     <app-header />
     <div>
       <v-tabs>
+        <v-tab><router-link to="/Home">Home</router-link></v-tab>
         <v-tab><router-link to="/Dashboard">Chile</router-link></v-tab>
         <v-tab><router-link to="/Mundo">Mundo</router-link></v-tab>
       </v-tabs>
