@@ -11,7 +11,7 @@ export default {
   },
   mounted () {
     console.log(this.chartdata.data);
-    console.log(Object.getPrototypeOf(this.chartdata.data));
+    console.log(Object.values(this.chartdata.data));
     
     this.renderChart(
       {

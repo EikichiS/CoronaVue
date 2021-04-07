@@ -7,11 +7,6 @@ export default new Router({
   mode: "history",
   routes: [
     {
-      name: 'root',
-      path: '/',
-      component: () => import('@/components/AppLayout'),
-    },
-    {
       name: 'Home',
       path: '/home',
       component: () => import('@/components/Home'),
