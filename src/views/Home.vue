@@ -1,5 +1,6 @@
 <template>
   <div class="container">
+    <vue-loaders-line-scale-party></vue-loaders-line-scale-party>
     <HomeChart
       v-if="loaded"
       :chartdata="chartdata"/>
@@ -8,12 +9,12 @@
 
 <script>
 import axios from 'axios';
-import HomeChart from './Charts/HomeChart.vue'
+import HomeChart from '../components/Charts/HomeChart.vue';
 
 
 export default {
   name: "Home",
-  components: { HomeChart },
+  components: { HomeChart},
 
    data() {
     return {

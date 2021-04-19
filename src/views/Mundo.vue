@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="loaded">
     <v-simple-table>
       <template v-slot:default>
         <thead>
@@ -36,6 +36,7 @@ export default {
   data() {
     return {
       paises: {},
+      loaded: false,
     };
   },
 
@@ -47,7 +48,7 @@ export default {
         )
         .then((response) => {
           this.paises = response
-          console.log(this.paises)
+          this.loaded = true;
         })
         .catch((err) => reject(err));
     });

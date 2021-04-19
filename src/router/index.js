@@ -8,8 +8,8 @@ export default new Router({
   routes: [
     {
       name: 'Home',
-      path: '/home',
-      component: () => import('@/components/Home'),
+      path: '/',
+      component: () => import('@/views/Home'),
     },
     {
       name: 'Dashboard',
@@ -19,7 +19,12 @@ export default new Router({
     {
       name: 'Mundo',
       path: '/mundo',
-      component: () => import('@/components/Mundo'),
+      component: () => import('@/views/Mundo'),
+    },
+    {
+      name: 'Search',
+      path: '/search',
+      component: () => import('@/components/Search'),
     }
   ],
 

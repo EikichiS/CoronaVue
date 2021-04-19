@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="loaded">
     <v-simple-table>
       <template v-slot:default>
         <thead>
@@ -32,6 +32,7 @@ export default {
   data() {
     return {
       comunas: {},
+      loaded: false,
     };
   },
 
@@ -43,6 +44,7 @@ export default {
         )
         .then((response) => {
           this.comunas = response
+          this.loaded = true;
         })
         .catch((err) => reject(err));
     });
