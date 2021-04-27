@@ -29,5 +29,3 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 Proyecto que muestra la información del corona virus en Chile y el mundo
 
 Creado con vue y axios 
-
-Colaboradora Paula li <3
