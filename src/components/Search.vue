@@ -38,7 +38,7 @@
               {{ selectedCountry.All.confirmed }}
             </v-list-item-subtitle>
           </v-list-item>
-               <v-list-item>
+          <v-list-item>
             <v-list-item-title>Recuperados</v-list-item-title>
 
             <v-list-item-icon>
@@ -49,7 +49,7 @@
               {{ selectedCountry.All.recovered }}
             </v-list-item-subtitle>
           </v-list-item>
-               <v-list-item>
+          <v-list-item>
             <v-list-item-title>Fallecidos</v-list-item-title>
 
             <v-list-item-icon>
@@ -64,13 +64,17 @@
       </v-card>
     </v-col>
     <v-col>
-      <v-card class="mx-auto" max-width="400"></v-card>
+      <v-card class="mx-auto" max-width="400" v-if="selectedCountry">
+         <v-card-title>Graficos</v-card-title>
+
+      </v-card>
     </v-col>
   </v-row>
 </template>
 
 <script>
 import axios from "axios";
+
 
 export default {
   name: "Search",
@@ -80,6 +84,7 @@ export default {
       paises: {},
       loaded: false,
       selectedCountry: null,
+      pais: {},
     };
   },
 
@@ -105,7 +110,15 @@ export default {
   watch: {
     selectedCountry() {
       if (this.selectedCountry) {
-        console.log(this.selectedCountry);
+        return new Promise((resolve, reject) => {
+          axios
+            .get(" https://covid-api.mmediagroup.fr/v1/cases?country=" + this.selectedCountry)
+            .then((response) => {
+              this.pais = response;
+              console.log(this.paises.data);
+            })
+            .catch((err) => reject(err));
+        });
       }
     },
   },

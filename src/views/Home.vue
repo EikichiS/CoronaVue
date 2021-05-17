@@ -1,6 +1,5 @@
 <template>
   <div class="container">
-    <vue-loaders-line-scale-party></vue-loaders-line-scale-party>
     <HomeChart
       v-if="loaded"
       :chartdata="chartdata"/>
