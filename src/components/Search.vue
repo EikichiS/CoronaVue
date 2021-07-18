@@ -65,8 +65,14 @@
     </v-col>
     <v-col>
       <v-card class="mx-auto" max-width="400" v-if="selectedCountry">
-         <v-card-title>Graficos</v-card-title>
-
+        <v-card-title>Graficos</v-card-title>
+        <v-select
+          :items="status"
+          v-model="selectedStatus"
+          return-object
+          item-text="name"
+        ></v-select>
+        <SearchChart v-if="loadedChart" :chartdata="grafics" />
       </v-card>
     </v-col>
   </v-row>
@@ -74,17 +80,26 @@
 
 <script>
 import axios from "axios";
-
+import SearchChart from "../components/Charts/SearchChart.vue";
 
 export default {
   name: "Search",
+  components: { SearchChart },
 
   data() {
     return {
       paises: {},
       loaded: false,
+      loadedChart: false,
       selectedCountry: null,
+      selectedStatus: null,
       pais: {},
+      status: [
+        { id: "confirmed", name: 'Confirmados' },
+        { id: "deaths", name: 'Muertes' },
+        { id: "recovered", name: 'Recuperados' }
+      ],
+      grafics: {},
     };
   },
 
@@ -112,10 +127,30 @@ export default {
       if (this.selectedCountry) {
         return new Promise((resolve, reject) => {
           axios
-            .get(" https://covid-api.mmediagroup.fr/v1/cases?country=" + this.selectedCountry)
+            .get(
+              " https://covid-api.mmediagroup.fr/v1/cases?country=" +
+                this.selectedCountry
+            )
             .then((response) => {
               this.pais = response;
               console.log(this.paises.data);
+            })
+            .catch((err) => reject(err));
+        });
+      }
+    },
+    selectedStatus() {
+      if (this.selectedStatus) {
+        return new Promise((resolve, reject) => {
+          axios
+            .get(
+              " https://covid-api.mmediagroup.fr/v1/history?country=" +
+                this.selectedCountry.All.country + "&status=" + this.selectedStatus.id
+            )
+            .then((response) => {
+              this.grafics = response;
+              this.loadedChart = true;
+              console.log(response);
             })
             .catch((err) => reject(err));
         });
